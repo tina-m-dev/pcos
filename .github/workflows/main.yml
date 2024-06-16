@@ -1,6 +1,9 @@
 name: Run SQL Script
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   run-sql:
@@ -39,3 +42,12 @@ jobs:
       env:
         PGPASSWORD: password
       run: psql -h localhost -U user -d mydatabase -f your_script.sql
+
+    - name: Verify table creation
+      env:
+        PGPASSWORD: password
+      run: |
+        echo "Listing tables in the database:"
+        psql -h localhost -U user -d mydatabase -c "\dt"
+        echo "Displaying contents of the table:"
+        psql -h localhost -U user -d mydatabase -c "SELECT * FROM your_table_name;"
