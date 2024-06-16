@@ -38,22 +38,36 @@ jobs:
     - name: Install PostgreSQL client
       run: sudo apt-get install -y postgresql-client
 
+    - name: List directory contents
+      run: ls -R
+
     - name: Create table for CSV data
       env:
         PGPASSWORD: password
-      run: psql -h localhost -U user -d mydatabase -f your_script.sql
-
-    - name: Import CSV into PostgreSQL
-      env:
-        PGPASSWORD: password
       run: |
-        psql -h localhost -U user -d mydatabase -c "\copy pcos_infertility FROM 'PCOS_infertility.csv' CSV HEADER"
+        echo "Creating table..."
+        psql -h localhost -U user -d mydatabase -f ./your_script.sql
+        echo "Table creation completed."
 
     - name: Verify table creation
       env:
         PGPASSWORD: password
       run: |
-        echo "Listing tables in the database:"
+        echo "Verifying table creation..."
         psql -h localhost -U user -d mydatabase -c "\dt"
-        echo "Displaying contents of the table:"
+        psql -h localhost -U user -d mydatabase -c "SELECT * FROM pcos_infertility;"
+
+    - name: Import CSV into PostgreSQL
+      env:
+        PGPASSWORD: password
+      run: |
+        echo "Importing CSV data..."
+        psql -h localhost -U user -d mydatabase -c "\copy pcos_infertility FROM 'PCOS_infertility.csv' CSV HEADER"
+        echo "CSV import completed."
+
+    - name: Verify data import
+      env:
+        PGPASSWORD: password
+      run: |
+        echo "Verifying data import..."
         psql -h localhost -U user -d mydatabase -c "SELECT * FROM pcos_infertility;"
