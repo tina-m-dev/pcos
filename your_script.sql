@@ -1,7 +1,7 @@
--- your_script.sql
-CREATE TABLE test_table (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(50) NOT NULL
+CREATE TABLE pcos_infertility (
+    "Sl. No" INTEGER PRIMARY KEY,
+    Patient File No.,
+    PCOS (Y/N),
+    I   beta-HCG(mIU/mL),
+    II    beta-HCG(mIU/mL),AMH(ng/mL)
 );
-
-INSERT INTO test_table (name) VALUES ('Hello, GitHub Actions!');
