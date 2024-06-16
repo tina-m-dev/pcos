@@ -1,0 +1,25 @@
+name: Create Pandas DataFrame
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  create-dataframe:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: pip install pandas
+
+    - name: Create Pandas DataFrame
+      run: python create_dataframe.py
