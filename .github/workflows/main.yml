@@ -50,4 +50,4 @@ jobs:
         echo "Listing tables in the database:"
         psql -h localhost -U user -d mydatabase -c "\dt"
         echo "Displaying contents of the table:"
-        psql -h localhost -U user -d mydatabase -c "SELECT * FROM your_table_name;"
+        psql -h localhost -U user -d mydatabase -c "SELECT * FROM test_table;"
