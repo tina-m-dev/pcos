@@ -41,7 +41,7 @@ jobs:
     - name: Create table for CSV data
       env:
         PGPASSWORD: password
-      run: psql -h localhost -U user -d mydatabase -f create_table.sql
+      run: psql -h localhost -U user -d mydatabase -f your_script.sql
 
     - name: Import CSV into PostgreSQL
       env:
