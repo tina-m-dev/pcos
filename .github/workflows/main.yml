@@ -75,7 +75,7 @@ jobs:
       run: |
         echo "Importing CSV data..."
         psql -h localhost -U user -d mydatabase -c "\copy pcos_infertility FROM 'PCOS_infertility.csv' CSV HEADER"
-        psql -h localhost -U user -d mydatabase -c "\copy testonly FROM 'pcos_w_i.csv' CSV HEADER"
+        psql -h localhost -U user -d mydatabase -c "\copy pcos_w_i FROM 'pcos_w_i.csv' CSV HEADER"
         echo "CSV import completed."
 
     - name: Verify data import
