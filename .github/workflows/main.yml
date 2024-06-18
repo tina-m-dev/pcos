@@ -67,7 +67,7 @@ jobs:
         echo "Verifying table creation..."
         psql -h localhost -U user -d mydatabase -c "\dt"
         psql -h localhost -U user -d mydatabase -c "SELECT * FROM pcos_infertility;"
-        psql -h localhost -U user -d mydatabase -c "SELECT * FROM testonly;"
+        psql -h localhost -U user -d mydatabase -c "SELECT * FROM pcos_w_i;"
 
     - name: Import CSV into PostgreSQL
       env:
@@ -75,7 +75,7 @@ jobs:
       run: |
         echo "Importing CSV data..."
         psql -h localhost -U user -d mydatabase -c "\copy pcos_infertility FROM 'PCOS_infertility.csv' CSV HEADER"
-        psql -h localhost -U user -d mydatabase -c "\copy testonly FROM 'testonly.csv' CSV HEADER"
+        psql -h localhost -U user -d mydatabase -c "\copy testonly FROM 'pcos_w_i.csv' CSV HEADER"
         echo "CSV import completed."
 
     - name: Verify data import
@@ -83,6 +83,6 @@ jobs:
         PGPASSWORD: password
       run: |
         echo "Verifying data import..."
-        psql -h localhost -U user -d mydatabase -c "SELECT * FROM testonly;"
+        psql -h localhost -U user -d mydatabase -c "SELECT * FROM pcos_w_i;"
         psql -h localhost -U user -d mydatabase -c "SELECT * FROM pcos_infertility;"
         psql -h localhost -U user -d mydatabase -c "SELECT * FROM pcos_infertility WHERE \"IIbeta-HCG(mIU/mL)\" < \"Ibeta-HCG(mIU/mL)\";"
