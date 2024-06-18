@@ -8,7 +8,7 @@ CREATE TABLE pcos_infertility (
 );
 
 CREATE TABLE pcos_w_i (
-"Sl. No" INTEGER PRIMARY KEY,
+"Sl. No" INTEGER PRIMARY KEY
 ,"Patient File No." NUMERIC 
 ,"PCOS (Y/N)" NUMERIC 
 ," Age (yrs)" NUMERIC 
