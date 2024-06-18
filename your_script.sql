@@ -6,3 +6,9 @@ CREATE TABLE pcos_infertility (
     "IIbeta-HCG(mIU/mL)" NUMERIC,
     "AMH(ng/mL)" NUMERIC
 );
+
+CREATE TABLE testonly (
+    "H1" INTEGER PRIMARY KEY,
+    "H2" NUMERIC,
+    "H3" TEXT
+);
