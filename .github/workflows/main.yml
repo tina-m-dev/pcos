@@ -56,6 +56,7 @@ jobs:
         echo "Verifying table creation..."
         psql -h localhost -U user -d mydatabase -c "\dt"
         psql -h localhost -U user -d mydatabase -c "SELECT * FROM pcos_infertility;"
+        psql -h localhost -U user -d mydatabase -c "SELECT * FROM testonly;"
 
     - name: Import CSV into PostgreSQL
       env:
