@@ -83,6 +83,6 @@ jobs:
         PGPASSWORD: password
       run: |
         echo "Verifying data import..."
-        psql -h localhost -U user -d mydatabase -c "SELECT \"Sl. No\", \"PCOS (Y/N)\"  FROM pcos_w_i;"
+        psql -h localhost -U user -d mydatabase -c "SELECT \"Sl. No\", \"PCOS (Y/N)\", \"FSH/LH\"  FROM pcos_w_i;"
         psql -h localhost -U user -d mydatabase -c "SELECT * FROM pcos_infertility;"
         psql -h localhost -U user -d mydatabase -c "SELECT * FROM pcos_infertility WHERE \"IIbeta-HCG(mIU/mL)\" < \"Ibeta-HCG(mIU/mL)\";"
