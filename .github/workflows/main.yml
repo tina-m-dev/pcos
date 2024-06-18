@@ -41,7 +41,7 @@ jobs:
     - name: List directory contents
       run: ls -R
 
-    - name: Create table for CSV data
+    - name: Create table for CSV and XLSX data
       env:
         PGPASSWORD: password
       run: |
@@ -65,6 +65,14 @@ jobs:
         echo "Importing CSV data..."
         psql -h localhost -U user -d mydatabase -c "\copy pcos_infertility FROM 'PCOS_infertility.csv' CSV HEADER"
         echo "CSV import completed."
+
+    - name: Import XLSX into PostgreSQL
+      env:
+        PGPASSWORD: password
+      run: |
+        echo "Importing XLSX data..."
+        psql -h localhost -U user -d mydatabase -c "\copy testonly FROM 'testonly.xlsx' XLSX HEADER"
+        echo "XLSX import completed."
 
     - name: Verify data import
       env:
