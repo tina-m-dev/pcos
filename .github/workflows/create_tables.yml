@@ -1,14 +1,29 @@
-name: Process CSV and Excel Files
+name: Process CSV and Excel Files with PostgreSQL
 
 on:
   push:
-    #paths:
-     # - 'pcos/pcos_data/*.csv'
-      #- 'pcos/pcos_data/*.xlsx'
+    paths:
+      - 'pcos/pcos_data/*.csv'
+      - 'pcos/pcos_data/*.xlsx'
 
 jobs:
-  process_files:
+  run-sql:
     runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: mydatabase
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
     - name: Checkout repository
@@ -22,7 +37,12 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pandas openpyxl
+        pip install pandas openpyxl sqlalchemy psycopg2-binary
 
     - name: Process CSV and Excel files
-      run: python pcos_data/create_tables.py  # Update with your Python script name
+      working-directory: pcos/pcos_data
+      run: python process_files.py
+
+    - name: Tear down PostgreSQL service
+      if: always()
+      run: docker stop postgres
