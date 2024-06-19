@@ -1,33 +1,31 @@
 name: Create SQL Tables from Files
 
 on:
-  push:
-    #paths:
+  #paths:
     #  - 'pcos_data/*.csv'
     #  - 'pcos_data/*.xlsx'
   pull_request:
   workflow_dispatch:
-
+  
 jobs:
   create_tables:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: '3.x'
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pandas sqlalchemy openpyxl
-        pip install pandas sqlalchemy openpyxl psycopg2  # Add psycopg2 here
+        pip install pandas sqlalchemy openpyxl psycopg2-binary  # Use psycopg2-binary for PostgreSQL
 
     - name: Create SQL tables
-      run: python pcos_data/create_tables.py
+      run: python .github/workflows/create_tables.py
       env:
         DB_URL: ${{ secrets.DB_URL }}
