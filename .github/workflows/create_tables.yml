@@ -27,6 +27,6 @@ jobs:
         pip install pandas sqlalchemy openpyxl
 
     - name: Create SQL tables
-      run: python create_tables.py
+      run: python pcos_data/create_tables.py
       env:
         DB_URL: ${{ secrets.DB_URL }}
