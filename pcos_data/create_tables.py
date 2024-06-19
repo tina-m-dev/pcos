@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 from sqlalchemy import create_engine
-import psycopg2
+
 
 # Database connection URL
 db_url = db_url = 'postgresql://username:password@localhost:5432/database_name'
