@@ -40,7 +40,7 @@ jobs:
         pip install pandas openpyxl sqlalchemy psycopg2-binary
 
     - name: Process CSV and Excel files
-      working-directory: pcos/pcos_data
+      #working-directory: pcos/pcos_data
       run: python create_tables.py
 
     - name: Tear down PostgreSQL service
