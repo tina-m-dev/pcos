@@ -2,7 +2,7 @@ import pandas as pd
 import glob
 
 # Path to CSV and Excel files directory
-files_path = 'pcos_data/'
+files_path = 'pcos/pcos_data/'
 
 # Function to process CSV files
 def process_csv_files():
