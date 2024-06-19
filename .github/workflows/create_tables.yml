@@ -27,7 +27,7 @@ jobs:
         pip install pandas sqlalchemy openpyxl psycopg2-binary  # Use psycopg2-binary for PostgreSQL
 
     - name: Create SQL tables
-      working-directory: pcos_data  # Set the working directory to pcos_data/
-      run: python create_tables.py
+      working-directory: pcos  # Set the working directory to the root of the repository
+      run: python pcos_data/create_tables.py  # Adjust path to create_tables.py as per your repository structure
       env:
         DB_URL: ${{ secrets.DB_URL }}
