@@ -25,6 +25,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install pandas sqlalchemy openpyxl
+        pip install pandas sqlalchemy openpyxl psycopg2  # Add psycopg2 here
 
     - name: Create SQL tables
       run: python pcos_data/create_tables.py
