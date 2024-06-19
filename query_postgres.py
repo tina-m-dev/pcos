@@ -4,33 +4,42 @@ import pandas as pd
 # Replace with your PostgreSQL database connection URL
 db_url = 'postgresql://user:password@localhost:5432/mydatabase'
 
-# Function to query data from PostgreSQL
-def query_data():
-    # Create SQLAlchemy engine
-    engine = create_engine(db_url)
-
-    # Example SELECT statement
+# Function to list all tables in the public schema
+def list_tables(engine):
     query = '''
         SELECT table_name
         FROM information_schema.tables
         WHERE table_schema = 'public'
-        
     '''
-
-    # Example parameter (replace with actual parameter value)
-    #param_value = 'some_value'
-
-    # Execute query and fetch results into a pandas DataFrame
+    
     with engine.connect() as conn:
         result = conn.execute(text(query))
-        df = pd.DataFrame(result.fetchall(), columns=result.keys())
+        tables_df = pd.DataFrame(result.fetchall(), columns=result.keys())
+    
+    print("Tables in the database:")
+    print(tables_df)
 
-    # Print or process the retrieved data as needed
-    print(df.head())
+# Function to perform a SELECT query on a specific table
+def select_from_table(engine, table_name):
+    query = text(f'SELECT * FROM {table_name} LIMIT 5')
+    
+    with engine.connect() as conn:
+        result = conn.execute(query)
+        df = pd.DataFrame(result.fetchall(), columns=result.keys())
+    
+    print(f"Data from table {table_name}:")
+    print(df)
 
 # Main function to run the script
 def main():
-    query_data()
+    engine = create_engine(db_url)
+    
+    # List all tables
+    list_tables(engine)
+    
+    # Perform a SELECT query on a specific table (replace 'your_table_name' with actual table name)
+    table_name = 'your_table_name'  # Replace with the actual table name you want to query
+    select_from_table(engine, table_name)
 
 if __name__ == "__main__":
     main()
