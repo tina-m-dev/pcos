@@ -26,4 +26,4 @@ jobs:
 
     - name: Process CSV and Excel files
       working-directory: pcos
-      run: python pcos_data/process_files.py  # Update with your Python script name
+      run: python pcos_data/create_tables.py  # Update with your Python script name
