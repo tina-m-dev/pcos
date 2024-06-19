@@ -12,12 +12,12 @@ def query_data():
     # Example SELECT statement
     query = '''
         SELECT *
-        FROM your_table_name
-        WHERE some_column = :param_value
+        FROM pcos
+        
     '''
 
     # Example parameter (replace with actual parameter value)
-    param_value = 'some_value'
+    #param_value = 'some_value'
 
     # Execute query and fetch results into a pandas DataFrame
     with engine.connect() as conn:
