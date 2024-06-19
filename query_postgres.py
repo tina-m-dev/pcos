@@ -38,7 +38,7 @@ def main():
     list_tables(engine)
     
     # Perform a SELECT query on a specific table (replace 'your_table_name' with actual table name)
-    table_name = 'your_table_name'  # Replace with the actual table name you want to query
+    table_name = 'pcos'  # Replace with the actual table name you want to query
     select_from_table(engine, table_name)
 
 if __name__ == "__main__":
