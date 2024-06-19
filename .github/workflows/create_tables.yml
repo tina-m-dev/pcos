@@ -2,9 +2,9 @@ name: Create SQL Tables from Files
 
 on:
   push:
-    paths:
+    /*paths:
       - 'pcos_data/*.csv'
-      - 'pcos_data/*.xlsx'
+      - 'pcos_data/*.xlsx'*/
   pull_request:
   workflow_dispatch:
   
