@@ -7,7 +7,7 @@ files_path = './'
 
 # Function to process CSV files
 def process_csv_files():
-    csv_files = glob.glob(files_path + '*.csv')
+    csv_files = glob.glob('*.csv')
     print(csv_files)
     for file in csv_files:
         df = pd.read_csv(file)
