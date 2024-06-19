@@ -25,5 +25,5 @@ jobs:
         pip install pandas openpyxl
 
     - name: Process CSV and Excel files
-      working-directory: pcos/pcos_data 
-      run: python create_tables.py  # Update with your Python script name
+      #working-directory: pcos/pcos_data 
+      run: python pcos_data/create_tables.py  # Update with your Python script name
