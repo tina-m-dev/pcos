@@ -21,7 +21,7 @@ def query_data():
 
     # Execute query and fetch results into a pandas DataFrame
     with engine.connect() as conn:
-        result = conn.execute(text(query), param_value=param_value)
+        result = conn.execute(text(query))
         df = pd.DataFrame(result.fetchall(), columns=result.keys())
 
     # Print or process the retrieved data as needed
