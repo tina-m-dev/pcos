@@ -1,0 +1,7 @@
+name: Create SQL Tables from Files
+
+on:
+  push:
+    paths:
+      - 'pcos_data/*.csv'
+      - 'pcos_data/*.xlsx'
