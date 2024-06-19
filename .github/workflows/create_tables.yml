@@ -5,3 +5,23 @@ on:
     paths:
       - 'pcos_data/*.csv'
       - 'pcos_data/*.xlsx'
+jobs:
+  create_tables:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas sqlalchemy openpyxl
+
+      - name: Create SQL tables
+        run: |
+          python create_tables.py
