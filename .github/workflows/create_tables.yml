@@ -45,3 +45,7 @@ jobs:
 
     - name: Execute Python script
       run: python query_postgres.py
+
+    - name: Show script output
+      run: cat pcos_data/output.txt
+      if: always()
