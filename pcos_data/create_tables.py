@@ -3,7 +3,8 @@ from sqlalchemy import create_engine
 import glob
 
 # Path to CSV and Excel files directory
-files_path = './'
+files_path = 'pcos_data/'
+
 
 # Function to process CSV files
 def process_csv_files():
