@@ -9,7 +9,7 @@ def list_tables(engine):
     query = '''
         SELECT table_name
         FROM information_schema.tables
-        WHERE table_schema = 'public'
+        
     '''
     
     with engine.connect() as conn:
