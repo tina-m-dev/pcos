@@ -5,7 +5,8 @@ on:
     #paths:
     #  - 'pcos_data/*.csv'
     #  - 'pcos_data/*.xlsx'
-  
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   create_tables:
