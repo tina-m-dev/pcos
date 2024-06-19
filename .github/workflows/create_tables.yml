@@ -1,15 +1,13 @@
-name: Create SQL Tables from Files
+name: Process CSV and Excel Files
 
 on:
   push:
-    #paths:
-    #  - 'pcos_data/*.csv'
-    #  - 'pcos_data/*.xlsx'
-  pull_request:
-  workflow_dispatch:
-  
+    paths:
+      - 'pcos/pcos_data/*.csv'
+      - 'pcos/pcos_data/*.xlsx'
+
 jobs:
-  create_tables:
+  process_files:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,10 +22,8 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pandas sqlalchemy openpyxl psycopg2-binary  # Use psycopg2-binary for PostgreSQL
+        pip install pandas openpyxl
 
-    - name: Create SQL tables
-      #working-directory: pcos  # Set the working directory to the root of the repository
-      run: python pcos_data/create_tables.py  # Adjust path to create_tables.py as per your repository structure
-      env:
-        DB_URL: ${{ secrets.DB_URL }}
+    - name: Process CSV and Excel files
+      working-directory: pcos
+      run: python pcos_data/process_files.py  # Update with your Python script name
