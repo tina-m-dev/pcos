@@ -2,35 +2,33 @@ import os
 import pandas as pd
 from sqlalchemy import create_engine
 
+# Retrieve DB_URL from environment variables
+DB_URL = os.getenv('DB_URL')
 
-# Database connection URL
-db_url = os.getenv('DB_URL')
+def create_tables():
+    # Establish database connection
+    engine = create_engine(DB_URL)
 
-# Directory containing the data files
-data_dir = 'pcos_data'
+    # List all CSV and Excel files in pcos_data directory
+    files = [file for file in os.listdir('pcos_data') if file.endswith('.csv') or file.endswith('.xlsx')]
 
-# Establish database connection
-engine = create_engine(db_url)
+    # Iterate through each file and create tables
+    for file in files:
+        table_name = os.path.splitext(file)[0]  # Use file name as table name
+        file_path = os.path.join('pcos_data', file)
 
-# Function to create table from a file
-def create_table_from_file(file_path):
-    file_name = os.path.basename(file_path)
-    table_name, file_extension = os.path.splitext(file_name)
+        # Read CSV or Excel file into Pandas DataFrame
+        if file.endswith('.csv'):
+            df = pd.read_csv(file_path)
+        elif file.endswith('.xlsx'):
+            df = pd.read_excel(file_path, engine='openpyxl')
+        else:
+            continue
 
-    if file_extension == '.csv':
-        df = pd.read_csv(file_path)
-    elif file_extension == '.xlsx':
-        df = pd.read_excel(file_path)
-    else:
-        print(f"Unsupported file type: {file_extension}")
-        return
+        # Write DataFrame to SQL table
+        df.to_sql(table_name, con=engine, index=False, if_exists='replace')
 
-    # Convert DataFrame to SQL table
-    df.to_sql(table_name, engine, if_exists='replace', index=False)
-    print(f"Table '{table_name}' created successfully from '{file_name}'.")
+        print(f"Table '{table_name}' created successfully.")
 
-# Loop through each file in the data directory
-for file_name in os.listdir(data_dir):
-    file_path = os.path.join(data_dir, file_name)
-    if os.path.isfile(file_path):
-        create_table_from_file(file_path)
+if __name__ == '__main__':
+    create_tables()
