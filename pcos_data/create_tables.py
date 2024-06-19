@@ -12,6 +12,8 @@ def process_csv_files():
         df = pd.read_csv(file)
         table_name = file.split('/')[-1].split('.')[0]  # Extract table name from file name
         df_to_sql(df, table_name)
+        print(f"CSV file '{file}' processed and table '{table_name}' created in database.")
+
 
 # Function to process Excel files
 def process_excel_files():
