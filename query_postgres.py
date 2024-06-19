@@ -16,8 +16,11 @@ def list_tables(engine):
         result = conn.execute(text(query))
         tables_df = pd.DataFrame(result.fetchall(), columns=result.keys())
     
-    print("Tables in the database:")
-    print(tables_df)
+    # Write to output file
+    with open('output.txt', 'w') as f:
+        f.write("Tables in the database:\n")
+        f.write(tables_df.to_string(index=False))
+        f.write("\n\n")
 
 
 
@@ -28,6 +31,7 @@ def main():
     # List all tables
     list_tables(engine)
     
-   
+  
+
 if __name__ == "__main__":
     main()
