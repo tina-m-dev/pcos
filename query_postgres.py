@@ -19,16 +19,7 @@ def list_tables(engine):
     print("Tables in the database:")
     print(tables_df)
 
-# Function to perform a SELECT query on a specific table
-def select_from_table(engine, table_name):
-    query = text(f'SELECT * FROM {table_name} LIMIT 5')
-    
-    with engine.connect() as conn:
-        result = conn.execute(query)
-        df = pd.DataFrame(result.fetchall(), columns=result.keys())
-    
-    print(f"Data from table {table_name}:")
-    print(df)
+
 
 # Main function to run the script
 def main():
@@ -37,9 +28,6 @@ def main():
     # List all tables
     list_tables(engine)
     
-    # Perform a SELECT query on a specific table (replace 'your_table_name' with actual table name)
-    table_name = 'pcos'  # Replace with the actual table name you want to query
-    select_from_table(engine, table_name)
-
+   
 if __name__ == "__main__":
     main()
