@@ -42,7 +42,3 @@ jobs:
     - name: Process CSV and Excel files
       #working-directory: pcos/pcos_data
       run: python pcos_data/create_tables.py
-
-    - name: Tear down PostgreSQL service
-      if: always()
-      run: docker stop postgres
