@@ -1,0 +1,8 @@
+name: Create SQL Tables from Files
+
+on:
+  push:
+    paths:
+      - '*.csv'
+      - '*.xlsx'
+
