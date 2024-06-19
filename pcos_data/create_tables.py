@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 
 
 # Database connection URL
-db_url = db_url = 'postgresql://username:password@localhost:5432/database_name'
+db_url = os.getenv('DB_URL')
 
 # Directory containing the data files
 data_dir = 'pcos_data'
