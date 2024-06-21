@@ -2,6 +2,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 import glob
 import os
+import subprocess
 
 # Path to CSV and Excel files directory
 files_path = 'pcos_data/'
