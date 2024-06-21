@@ -43,7 +43,7 @@ jobs:
       run: python create_tables.py
 
     - name: Save processed data
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v4
       with:
         name: processeddata
         path: ./
