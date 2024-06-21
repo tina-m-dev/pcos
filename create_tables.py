@@ -9,12 +9,11 @@ files_path = 'pcos_data/'
 # Function to process CSV files
 def process_csv_files():
     csv_files = glob.glob(files_path +'*.csv')
-    print(csv_files)
     for file in csv_files:
         df = pd.read_csv(file)
         table_name = file.split('/')[-1].split('.')[0]  # Extract table name from file name
         df_to_sql(df, table_name)
-        print(f"CSV file '{file}' processed and table '{table_name}' created in database.")
+        
 
 
 # Function to process Excel files
