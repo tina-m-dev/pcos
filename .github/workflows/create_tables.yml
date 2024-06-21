@@ -2,9 +2,9 @@ name: Process CSV and Excel Files with PostgreSQL
 
 on:
   push:
-    #paths:
-      #- 'pcos/pcos_data/*.csv'
-      #- 'pcos/pcos_data/*.xlsx'
+    paths:
+      - 'pcos/pcos_data/*.csv'
+      - 'pcos/pcos_data/*.xlsx'
 
 jobs:
   run-sql:
@@ -40,12 +40,4 @@ jobs:
         pip install pandas openpyxl sqlalchemy psycopg2-binary
 
     - name: Process CSV and Excel files
-      #working-directory: pcos/pcos_data
       run: python create_tables.py
-
-    - name: Execute Python script
-      run: python query_postgres.py
-
-    - name: Show script output
-      run: cat pcos_data/output.txt
-      if: always()
