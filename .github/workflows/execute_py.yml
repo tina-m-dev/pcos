@@ -19,7 +19,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: processed-data
-        path: pcos_data/
+        path: pcos_data/processed-data
         repository: tina-m-dev/pcos
         run-id: ${{ github.event.inputs.run-id }}
 
