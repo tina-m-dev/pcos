@@ -33,7 +33,15 @@ def df_to_sql(df, table_name):
 
 # Function to export database to SQL file
 def export_database_to_sql():
-    os.system('pg_dump -U user -d mydatabase -f pcos_data/mydatabase.sql')
+    try:
+        result = subprocess.run(['pg_dump', '-U', 'user', '-d', 'mydatabase', '-f', 'pcos_data/mydatabase.sql'],
+                                capture_output=True, text=True, check=True)
+        print("pg_dump output:", result.stdout)
+        print("pg_dump errors:", result.stderr)
+    except subprocess.CalledProcessError as e:
+        print("Error during pg_dump:", e.output)
+        print("pg_dump stdout:", e.stdout)
+        print("pg_dump stderr:", e.stderr)
 
 
 # Main function
