@@ -32,23 +32,6 @@ def df_to_sql(df, table_name):
     engine = create_engine('postgresql://user:password@localhost:5432/mydatabase')  # Replace with your database connection URL
     df.to_sql(table_name, engine, index=False, if_exists='replace')  # Change if_exists as needed ('replace', 'append', 'fail')
 
-# Function to export database to SQL file
-def export_database_to_sql():
-    try:
-        result = subprocess.run([
-            'pg_dump',
-            '-h', 'localhost',  # Specify host
-            '-p', '5432',       # Specify port
-            '-U', 'user',
-            '-d', 'mydatabase',
-            '-f', 'pcos_data/mydatabase.sql'
-        ], env={'PGPASSWORD': 'password'}, capture_output=True, text=True, check=True)
-        print("pg_dump output:", result.stdout)
-        print("pg_dump errors:", result.stderr)
-    except subprocess.CalledProcessError as e:
-        print("Error during pg_dump:", e.output)
-        print("pg_dump stdout:", e.stdout)
-        print("pg_dump stderr:", e.stderr)
 
 
 
@@ -58,8 +41,6 @@ def main():
     process_csv_files()
     print("\nProcessing Excel files:")
     process_excel_files()
-    print("\nExporting database to SQL file:")
-    export_database_to_sql()
 
 if __name__ == "__main__":
     main()
