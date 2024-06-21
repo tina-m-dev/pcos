@@ -39,7 +39,7 @@ jobs:
     - name: Download processed data
       uses: actions/download-artifact@v4
       with:
-        name: processed-data
+        name: processeddata
         path: ./
 
     - name: List files in pcos_data (debugging)
