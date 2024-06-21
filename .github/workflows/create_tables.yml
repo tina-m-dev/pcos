@@ -41,7 +41,7 @@ jobs:
 
     - name: Process CSV and Excel files
       #working-directory: pcos/pcos_data
-      run: python pcos_data/create_tables.py
+      run: python create_tables.py
 
     - name: Execute Python script
       run: python query_postgres.py
