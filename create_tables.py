@@ -42,7 +42,7 @@ def export_database_to_sql():
             '-U', 'user',
             '-d', 'mydatabase',
             '-f', 'pcos_data/mydatabase.sql'
-        ], capture_output=True, text=True, check=True)
+        ], env={'PGPASSWORD': 'password'}, capture_output=True, text=True, check=True)
         print("pg_dump output:", result.stdout)
         print("pg_dump errors:", result.stderr)
     except subprocess.CalledProcessError as e:
