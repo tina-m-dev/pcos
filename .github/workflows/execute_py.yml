@@ -1,0 +1,50 @@
+name: Execute Python Script and Show Output
+
+on:
+  workflow_dispatch:
+
+jobs:
+  execute-script:
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: mydatabase
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install sqlalchemy psycopg2-binary
+
+    - name: Download processed data
+      uses: actions/download-artifact@v3
+      with:
+        name: processed-data
+        path: pcos_data/
+
+    - name: Execute Python script
+      run: python query_postgres.py
+
+    - name: Show script output
+      run: cat pcos_data/output.txt
+      if: always()
