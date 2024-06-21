@@ -6,7 +6,7 @@ on:
 jobs:
   execute-script:
     runs-on: ubuntu-latest
-    
+
     services:
       postgres:
         image: postgres:latest
@@ -41,6 +41,12 @@ jobs:
       with:
         name: processed-data
         path: pcos_data/
+
+    - name: List files in root (debugging)
+      run: ls -R
+
+    - name: List files in pcos_data (debugging)
+      run: ls -R pcos_data
 
     - name: Execute Python script
       run: python query_postgres.py
