@@ -41,3 +41,9 @@ jobs:
 
     - name: Process CSV and Excel files
       run: python create_tables.py
+
+    - name: Save processed data
+      uses: actions/upload-artifact@v3
+      with:
+        name: processed-data
+        path: pcos_data/
