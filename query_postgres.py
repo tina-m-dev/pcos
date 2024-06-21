@@ -7,7 +7,7 @@ db_url = 'postgresql://user:password@localhost:5432/mydatabase'
 # Function to list all tables in the public schema
 def list_tables(engine):
     query = '''
-        SELECT pcos.Sl.No
+        SELECT pcos.BMI
         FROM pcos
         
     '''
