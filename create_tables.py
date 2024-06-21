@@ -29,12 +29,19 @@ def df_to_sql(df, table_name):
     engine = create_engine('postgresql://user:password@localhost:5432/mydatabase')  # Replace with your database connection URL
     df.to_sql(table_name, engine, index=False, if_exists='replace')  # Change if_exists as needed ('replace', 'append', 'fail')
 
+# Function to export database to SQL file
+def export_database_to_sql():
+    os.system('pg_dump -U user -d mydatabase -f pcos_data/mydatabase.sql')
+
+
 # Main function
 def main():
     print("Processing CSV files:")
     process_csv_files()
     print("\nProcessing Excel files:")
     process_excel_files()
+    print("\nExporting database to SQL file:")
+    export_database_to_sql()
 
 if __name__ == "__main__":
     main()
