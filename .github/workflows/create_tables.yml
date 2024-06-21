@@ -3,8 +3,8 @@ name: Process CSV and Excel Files with PostgreSQL
 on:
   push:
     paths:
-      - 'pcos/pcos_data/*.csv'
-      - 'pcos/pcos_data/*.xlsx'
+      - 'pcos_data/*.csv'
+      - 'pcos_data/*.xlsx'
 
 jobs:
   run-sql:
