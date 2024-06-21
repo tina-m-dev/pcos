@@ -47,3 +47,6 @@ jobs:
       with:
         name: processed-data
         path: pcos_data/
+
+    - name: List files in pcos_data
+      run: ls -R pcos_data
