@@ -52,9 +52,9 @@ jobs:
 
     - name: Export database to SQL file
       run: |
-        pg_dump -h localhost -p 5432 -U mtina -d pcos_db -f pcos_db.sql
+        pg_dump -h localhost -p 5432 -U ${{ secrets.POSTGRES_USER }} -d pcos_db -f pcos_db.sql
       env:
-        PGPASSWORD: 20221#
+        PGPASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
 
     - name: Save processed data
       uses: actions/upload-artifact@v4
