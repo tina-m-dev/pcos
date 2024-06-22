@@ -29,10 +29,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Set up PostgreSQL client tools
-      uses: actions/setup-postgres@v1
-      with:
-        postgres-version: '13'  # Specify the version you need, or omit for latest
+  
+    - name: Install PostgreSQL Client
+      run: sudo apt-get install -y postgresql-client
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -46,6 +45,12 @@ jobs:
 
     - name: Process CSV and Excel files
       run: python create_tables.py
+
+    - name: Export database to SQL file
+      run: |
+        pg_dump -h localhost -p 5432 -U user -d mydatabase -f pcos_data/mydatabase.sql
+      env:
+        PGPASSWORD: password
 
     - name: Save processed data
       uses: actions/upload-artifact@v4
