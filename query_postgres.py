@@ -10,7 +10,7 @@ def list_tables(engine):
     SELECT pcos."Sl. No"
         ,pcos."BMI"
         ,"FSH/LH"
-    FROM public.pcos
+    FROM pcos
         
     '''
     
