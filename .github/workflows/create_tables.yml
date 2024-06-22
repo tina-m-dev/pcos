@@ -52,7 +52,7 @@ jobs:
 
     - name: Export database to SQL file
       run: |
-        pg_dump -h localhost -p 5432 -U user -d mydatabase -f pcos_data/pcos_db.sql
+        pg_dump -h localhost -p 5432 -U user -d pcos_db -f pcos_db.sql
       env:
         PGPASSWORD: password
 
@@ -66,7 +66,7 @@ jobs:
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
-        git add pcos_data/mydatabase.sql
+        git add pcos_db.sql
         git commit -m "Add PostgreSQL dump"
         git push
       env:
