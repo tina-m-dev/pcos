@@ -29,7 +29,7 @@ def process_excel_files():
 
 # Function to convert DataFrame to SQL table
 def df_to_sql(df, table_name):
-    engine = create_engine('postgresql://user:password@localhost:5432/mydatabase')  # Replace with your database connection URL
+    engine = create_engine('postgresql://mtina:20221#@localhost:5432/pcos_db')  # Replace with your database connection URL
     df.to_sql(table_name, engine, index=False, if_exists='replace')  # Change if_exists as needed ('replace', 'append', 'fail')
 
 
