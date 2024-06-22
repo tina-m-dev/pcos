@@ -61,3 +61,6 @@ jobs:
       with:
         name: processeddata
         path: pcos_data/mydatabase.sql
+  
+volumes:
+  postgres-data:
