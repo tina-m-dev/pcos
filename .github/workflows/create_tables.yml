@@ -14,8 +14,8 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_USER: mtina
-          POSTGRES_PASSWORD: 20221#
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_DB: pcos_db
         ports:
           - 5432:5432
