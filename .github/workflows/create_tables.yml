@@ -62,5 +62,12 @@ jobs:
         name: processeddata
         path: pcos_data/mydatabase.sql
   
-volumes:
-  postgres-data:
+    - name: Commit SQL dump to repository
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+        git add pcos_data/mydatabase.sql
+        git commit -m "Add PostgreSQL dump"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
