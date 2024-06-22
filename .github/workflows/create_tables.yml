@@ -52,7 +52,7 @@ jobs:
 
     - name: Export database to SQL file
       run: |
-        pg_dump -h localhost -p 5432 -U mtina -d pcos_db -f pcos_data/pcos_db.sql
+        pg_dump -h localhost -p 5432 -U mtina -d pcos_db -f pcos_db.sql
       env:
         PGPASSWORD: 20221#
 
@@ -60,13 +60,13 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: processed-data
-        path: pcos_data/pcos_db.sql
+        path: pcos_db.sql
   
     - name: Commit SQL dump to repository
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
-        git add pcos_data/pcos_db.sql
+        git add pcos_db.sql
         git commit -m "Add PostgreSQL dump"
         git push
       env:
