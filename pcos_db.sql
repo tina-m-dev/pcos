@@ -26,7 +26,7 @@ SET default_table_access_method = heap;
 
 CREATE TABLE public."PCOS_infertility" (
     "Sl.No" bigint,
-    "Patient File No" bigint,
+    "Patient FileNo" bigint,
     "PCOS(Y/N)" bigint,
     "Ibeta-HCG(mIU/mL)" double precision,
     "IIbeta-HCG(mIU/mL)" double precision,
@@ -94,7 +94,7 @@ ALTER TABLE public.pcos OWNER TO mtina;
 -- Data for Name: PCOS_infertility; Type: TABLE DATA; Schema: public; Owner: mtina
 --
 
-COPY public."PCOS_infertility" ("Sl.No", "Patient File No", "PCOS(Y/N)", "Ibeta-HCG(mIU/mL)", "IIbeta-HCG(mIU/mL)", "AMH(ng/mL)") FROM stdin;
+COPY public."PCOS_infertility" ("Sl.No", "Patient FileNo", "PCOS(Y/N)", "Ibeta-HCG(mIU/mL)", "IIbeta-HCG(mIU/mL)", "AMH(ng/mL)") FROM stdin;
 1	10001	0	1.99	1.99	2.07
 2	10002	0	60.8	1.99	1.53
 3	10003	1	494.08	494.08	6.63
