@@ -54,7 +54,7 @@ jobs:
       run: |
         pg_dump -h localhost -p 5432 -U mtina -d pcos_db -f pcos_db.sql
       env:
-        PGPASSWORD: password
+        PGPASSWORD: 22021#
 
     - name: Save processed data
       uses: actions/upload-artifact@v4
