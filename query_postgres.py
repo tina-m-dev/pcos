@@ -21,7 +21,7 @@ def list_tables(engine):
 
 # Function to perform a SELECT query on a specific table
 def select_from_table(engine, table_name):
-    query = text(f'SELECT * FROM {table_name} LIMIT 5')
+    query = text(f'SELECT * FROM "{table_name}" LIMIT 5')
     
     with engine.connect() as conn:
         result = conn.execute(query)
