@@ -1,4 +1,4 @@
-Sl. No,Patient File No,PCOS (Y/N),I beta-HCG(mIU/mL),IIbeta-HCG(mIU/mL),AMH(ng/mL)
+Sl. No,Patient File No,PCOS (Y/N),Ibeta-HCG(mIU/mL),IIbeta-HCG(mIU/mL),AMH(ng/mL)
 1,10001,0,1.99,1.99,2.07
 2,10002,0,60.8,1.99,1.53
 3,10003,1,494.08,494.08,6.63
