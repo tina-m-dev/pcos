@@ -52,7 +52,7 @@ jobs:
 
     - name: Export database to SQL file
       run: |
-        pg_dump -h localhost -p 5432 -U mtina -d pcos_db -f pcos_db.sql
+        pg_dump -h localhost -p 5432 -U mtina -d pcos_db -f pcos_data/pcos_db.sql
       env:
         PGPASSWORD: 20221#
 
