@@ -66,7 +66,7 @@ jobs:
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
-        git add pcos_db.sql
+        git add pcos_dsta/pcos_db.sql
         git commit -m "Add PostgreSQL dump"
         git push
       env:
