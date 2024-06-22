@@ -29,6 +29,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Set up PostgreSQL client tools
+      uses: actions/setup-postgres@v1
+      with:
+        postgres-version: '13'  # Specify the version you need, or omit for latest
+
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
