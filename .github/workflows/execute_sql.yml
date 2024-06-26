@@ -21,6 +21,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install PostgreSQL client
+        run: sudo apt-get install postgresql-client
+
       - name: Run PostgreSQL queries and capture output
         run: |
           psql -h localhost -U ${{ secrets.POSTGRES_USER }} -d pcos_db -f queries.sql > query_output.txt
