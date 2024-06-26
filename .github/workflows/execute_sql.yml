@@ -26,6 +26,4 @@ jobs:
 
       - name: Load SQL Dump into PostgreSQL
         run: |
-          psql -h localhost -U ${{ secrets.POSTGRES_USER }} -d ${{ secrets.POSTGRES_DB }} -f pcos_db.sql
-        env:
-          PGPASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          PGPASSWORD=${{ secrets.POSTGRES_PASSWORD }} psql -h localhost -U ${{ secrets.POSTGRES_USER }} -d ${{ secrets.POSTGRES_DB }} -f pcos_db.sql
