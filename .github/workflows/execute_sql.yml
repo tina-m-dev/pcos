@@ -1,8 +1,8 @@
-name: Initialize PostgreSQL Database and Execute Queries
+name: Execute PostgreSQL Queries
 
 on:
   workflow_dispatch:
-
+  
 jobs:
   setup-db:
     runs-on: ubuntu-latest
@@ -19,12 +19,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
       - name: Install PostgreSQL client
         run: sudo apt-get install postgresql-client
 
-      - name: Create and Populate PostgreSQL Database
+      - name: Load SQL Dump into PostgreSQL
         run: |
           psql -h localhost -U ${{ secrets.POSTGRES_USER }} -d ${{ secrets.POSTGRES_DB }} -f pcos_db.sql
         env:
@@ -36,7 +36,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
       - name: Install PostgreSQL client
         run: sudo apt-get install postgresql-client
