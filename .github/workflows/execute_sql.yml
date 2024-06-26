@@ -2,9 +2,9 @@ name: Execute PostgreSQL Queries
 
 on:
   workflow_dispatch:
-  
+
 jobs:
-  setup-db:
+  run-sql:
     runs-on: ubuntu-latest
 
     services:
@@ -19,34 +19,18 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
-      - name: Install PostgreSQL Client Tools
+      - name: Install PostgreSQL client
         run: |
-          sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-          wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
           sudo apt-get update
-          sudo apt-get install -y postgresql-client-16
+          sudo apt-get install -y postgresql-client
 
       - name: Load SQL Dump into PostgreSQL
         run: |
-          psql -h localhost -U ${{ secrets.POSTGRES_USER }} -d pcos_db -f pcos_db.sql
-        env:
-          PGPASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-
-  run-sql:
-    needs: setup-db
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install PostgreSQL client
-        run: sudo apt-get install postgresql-client
+          PGPASSWORD="${{ secrets.POSTGRES_PASSWORD }}" psql -h localhost -U "${{ secrets.POSTGRES_USER }}" -d pcos_db -f pcos_db.sql
 
       - name: Execute PostgreSQL Queries
         run: |
-          psql -h localhost -U ${{ secrets.POSTGRES_USER }} -d pcos_db -f queries.sql > query_output.txt
+          PGPASSWORD="${{ secrets.POSTGRES_PASSWORD }}" psql -h localhost -U "${{ secrets.POSTGRES_USER }}" -d "pcos_db" -c "SELECT * FROM your_table;" > query_output.txt
           cat query_output.txt
-        shell: bash
