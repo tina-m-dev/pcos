@@ -1,10 +1,10 @@
-name: Execute SQL
+name: Initialize PostgreSQL Database and Execute Queries
 
 on:
   workflow_dispatch:
-  
+
 jobs:
-  run-sql:
+  setup-db:
     runs-on: ubuntu-latest
 
     services:
@@ -15,7 +15,7 @@ jobs:
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_DB: pcos_db
         ports:
-          - 5432:5432
+          - "5432:5432"
 
     steps:
       - name: Checkout repository
@@ -24,9 +24,25 @@ jobs:
       - name: Install PostgreSQL client
         run: sudo apt-get install postgresql-client
 
-      - name: Run PostgreSQL queries and capture output
+      - name: Create and Populate PostgreSQL Database
         run: |
-          psql -h localhost -U ${{ secrets.POSTGRES_USER }} -d pcos_db.sql -f queries.sql > query_output.txt
-          cat query_output.txt
+          psql -h localhost -U ${{ secrets.POSTGRES_USER }} -d ${{ secrets.POSTGRES_DB }} -f pcos_db.sql
         env:
           PGPASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+
+  run-sql:
+    needs: setup-db
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install PostgreSQL client
+        run: sudo apt-get install postgresql-client
+
+      - name: Execute PostgreSQL Queries
+        run: |
+          psql -h localhost -U ${{ secrets.POSTGRES_USER }} -d ${{ secrets.POSTGRES_DB }} -f queries.sql > query_output.txt
+          cat query_output.txt
+        shell: bash
