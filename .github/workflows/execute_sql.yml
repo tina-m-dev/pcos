@@ -26,7 +26,7 @@ jobs:
 
       - name: Run PostgreSQL queries and capture output
         run: |
-          psql -h localhost -U ${{ secrets.POSTGRES_USER }} -d pcos_db -f queries.sql > query_output.txt
+          psql -h localhost -U ${{ secrets.POSTGRES_USER }} -d pcos_db.sql -f queries.sql > query_output.txt
           cat query_output.txt
         env:
           PGPASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
