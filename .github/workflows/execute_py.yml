@@ -11,9 +11,9 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_USER: user
-          POSTGRES_PASSWORD: password
-          POSTGRES_DB: mydatabase
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB: pcos_db
         ports:
           - 5432:5432
         options: >-
@@ -35,9 +35,9 @@ jobs:
 
     - name: Restore PostgreSQL database
       run: |
-        psql -h localhost -p 5432 -U user -d mydatabase < pcos_data/mydatabase.sql
+        psql -h localhost -p 5432 -U ${{ secrets.POSTGRES_USER }} -d pcos_db < pcos_db.sql
       env:
-        PGPASSWORD: password
+        PGPASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
 
     - name: Set up Python
       uses: actions/setup-python@v5
