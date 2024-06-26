@@ -53,5 +53,5 @@ jobs:
       run: python query_postgres.py
 
     - name: Show script output
-      run: cat pcos_data/output.txt
+      run: output.txt
       if: always()
