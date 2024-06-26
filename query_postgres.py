@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, text
 import pandas as pd
 
 # Replace with your PostgreSQL database connection URL
-db_url = 'postgresql://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@localhost:5432/pcos_db'
+db_url = 'postgresql://mtina:20221#@localhost:5432/pcos_db'
 
 # Function to list all tables in the public schema
 def list_tables(engine):
