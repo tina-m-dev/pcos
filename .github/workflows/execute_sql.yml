@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Install PostgreSQL client
         run: |
@@ -32,5 +32,5 @@ jobs:
 
       - name: Execute PostgreSQL Queries
         run: |
-          PGPASSWORD="${{ secrets.POSTGRES_PASSWORD }}" psql -h localhost -U "${{ secrets.POSTGRES_USER }}" -d "pcos_db" -c "SELECT * FROM your_table;" > query_output.txt
+          PGPASSWORD="${{ secrets.POSTGRES_PASSWORD }}" psql -h localhost -U "${{ secrets.POSTGRES_USER }}" -d "pcos_db" -c "SELECT * FROM pcos;" > query_output.txt
           cat query_output.txt
