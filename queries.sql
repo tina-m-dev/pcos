@@ -63,7 +63,7 @@ BEGIN
             WHERE table_name = tbl_name AND table_schema = 'public'
         LOOP
             IF col_name <> 'Sl. No' THEN
-                query_text := 'SELECT "Sl. No", ''' || col_name || ''' AS null_column FROM ' || tbl_name || ' WHERE "' || col_name || '" IS NULL';
+                query_text := 'SELECT "Sl. No", ''' || col_name || ''' AS null_column FROM "' || tbl_name || '" WHERE "' || col_name || '" IS NULL';
                 
                 -- Only the necessary output
                 FOR result IN EXECUTE query_text
@@ -74,4 +74,5 @@ BEGIN
         END LOOP;
     END LOOP;
 END $$;
+
 
