@@ -45,3 +45,29 @@ BEGIN
         END IF;
     END LOOP;
 END $$;
+
+
+
+
+DO $$
+DECLARE
+    query_text TEXT;
+    result RECORD;
+    col_name TEXT;
+BEGIN
+    FOR col_name IN
+        SELECT column_name
+        FROM information_schema.columns
+        WHERE table_name = 'pcos' AND table_schema = 'public'
+    LOOP
+        IF col_name <> 'Sl. No' THEN
+            query_text := 'SELECT "Sl. No", ''' || col_name || ''' AS null_column FROM pcos WHERE "' || col_name || '" IS NULL';
+            
+            -- Only the necessary output
+            FOR result IN EXECUTE query_text
+            LOOP
+                RAISE NOTICE 'Sl. No: %, Null Column: %', result."Sl. No", result.null_column;
+            END LOOP;
+        END IF;
+    END LOOP;
+END $$;
