@@ -2,7 +2,7 @@ DO $$
 DECLARE
     query_text TEXT;
 BEGIN
-    SELECT 'SELECT * FROM your_table WHERE ' || 
+    SELECT 'SELECT * FROM pcos_db WHERE ' || 
            string_agg('"' || column_name || '" IS NULL', ' OR ')
     INTO query_text
     FROM information_schema.columns
