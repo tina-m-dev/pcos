@@ -91,6 +91,18 @@ CREATE TABLE public.pcos (
 ALTER TABLE public.pcos OWNER TO mtina;
 
 --
+-- Name: test; Type: TABLE; Schema: public; Owner: mtina
+--
+
+CREATE TABLE public.test (
+    beti bigint,
+    ana bigint
+);
+
+
+ALTER TABLE public.test OWNER TO mtina;
+
+--
 -- Data for Name: PCOS_infertility; Type: TABLE DATA; Schema: public; Owner: mtina
 --
 
@@ -1185,6 +1197,17 @@ COPY public.pcos ("Sl. No", "Patient File No.", "PCOS (Y/N)", " Age (yrs)", "Wei
 539	539	0	36	54	152	23.372576177285318	13	74	20	10.8	2	6	8	0	0	1.99	1.99	11.96	2.78	4.302158273381296	30	28	0.9333333333333333	2.87	3.7	96.41	22.5	0.25	92	0	0	0	0	0	0	0	110	80	1	0	18	9	7.3
 540	540	0	27	50	150	22.22222222222222	15	74	20	12	4	2	2	0	0	292.92	1.99	4.4	4.33	1.0161662817551964	28	26	0.9285714285714286	2.5	5.2	38.89	22.4	0.25	115	0	0	0	0	1	0	0	110	70	7	6	18	16	11.5
 541	541	1	23	82	165	30.119375573921026	13	80	20	10.2	4	7	2	0	0	1.99	1.99	3.99	4.3	0.9279069767441861	48	46	0.9583333333333334	1.66	20	20.74	17.4	0.37	108	1	1	1	1	1	1	0	120	70	9	10	19	18	6.9
+\.
+
+
+--
+-- Data for Name: test; Type: TABLE DATA; Schema: public; Owner: mtina
+--
+
+COPY public.test (beti, ana) FROM stdin;
+1	2
+2	3
+22	33
 \.
 
 
